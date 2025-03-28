@@ -1,0 +1,22 @@
+name: Build and Deploy Course Site
+on:
+  push:
+    paths:
+      - website/**
+      - .github/workflows/deploy.yml
+jobs:
+  deploy:
+    runs-on: w3-websites
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Virtual environment
+        run: python -m venv venv && source venv/bin/activate && pip install --upgrade pip
+      - name: Install MkDocs
+        run: source venv/bin/activate && pip install mkdocs-material==9.5.* mkdocs-awesome-pages-plugin==2.9.*
+      - name: Build public site
+        run: source venv/bin/activate && cd website && mkdocs build
+      - name: Group permissions
+        run: chown -R :outreach ./website/site && chmod -R g+w ./website/site
+      - name: Deploy via rsync
+        run: rsync -vcaO --delete ./website/site/ /data/www/outreach

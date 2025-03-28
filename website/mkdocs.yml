@@ -1,0 +1,57 @@
+site_name: JMU CS Outreach
+site_url: https://w3.cs.jmu.edu/outreach/
+
+extra_css:
+  - tweaks.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - md_in_html
+  - smarty:
+      smart_quotes: false
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.snippets:
+      base_path:
+        - docs
+      check_paths: true
+      restrict_base_path: false
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - sane_lists
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      primary: deep purple
+      accent: deep orange
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary: deep purple
+      accent: deep orange
+  features:
+    - content.code.copy
+    - navigation.indexes
+    - search.highlight
+    - search.suggest
